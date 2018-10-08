@@ -3,13 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Authentication', type: :request do
-  # Authentication test suite
+
   describe 'POST /auth/login' do
-    # create test user
+
     let!(:user) { create(:user) }
-    # set headers for authorization
     let(:headers) { valid_headers.except('Authorization') }
-    # set test valid and invalid credentials
     let(:valid_credentials) do
       {
         email: user.email,
@@ -20,7 +18,7 @@ RSpec.describe 'Authentication', type: :request do
       {
         email: Faker::Internet.email,
         password: Faker::Internet.password
-      }
+      }.to_json
     end
 
     # set request.headers to our custom headers
