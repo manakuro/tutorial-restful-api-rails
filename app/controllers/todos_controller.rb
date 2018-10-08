@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :update, :destory]
+  before_action :set_todo, only: %i[show update destory]
 
   # GET /todos
   def index
@@ -35,5 +37,4 @@ class TodosController < ApplicationController
   def set_todo
     @todo = Todo.find(params[:id])
   end
-
 end
