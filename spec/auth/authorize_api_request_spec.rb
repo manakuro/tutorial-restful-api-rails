@@ -40,7 +40,7 @@ RSpec.describe AuthorizeApiRequest do
       end
 
       context 'when token is expired' do
-        let(:header) { { Authorization: expired_token_generator(user.id) } }
+        let(:header) { { 'Authorization' => expired_token_generator(user.id) } }
         subject(:request_obj) { described_class.new(header) }
 
         it 'raises ExceptionHandler::ExpiredSignature error' do
@@ -53,7 +53,7 @@ RSpec.describe AuthorizeApiRequest do
       end
 
       context 'fake token' do
-        let(:header) { { Authrization: 'foobar' } }
+        let(:header) { { 'Authorization' => 'foobar' } }
         subject(:invalid_request_obj) { described_class.new(header) }
 
         it 'handles JWT::DecodeError' do
